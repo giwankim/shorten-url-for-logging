@@ -14,11 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 public class ShortenUrlRestController {
-  private SimpleShortenUrlService simpleShortenUrlService;
-
-  ShortenUrlRestController(SimpleShortenUrlService simpleShortenUrlService) {
-    this.simpleShortenUrlService = simpleShortenUrlService;
-  }
+  private final SimpleShortenUrlService simpleShortenUrlService;
 
   @PostMapping(value = "/shortenUrl")
   public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
@@ -28,7 +24,7 @@ public class ShortenUrlRestController {
     return ResponseEntity.ok(shortenUrlCreateResponseDto);
   }
 
-  @RequestMapping(value = "/{shortenUrlKey}", method = RequestMethod.GET)
+  @GetMapping(value = "/{shortenUrlKey}")
   public ResponseEntity<?> redirectShortenUrl(@PathVariable String shortenUrlKey)
       throws URISyntaxException {
     String originalUrl = simpleShortenUrlService.getOriginalUrlByShortenUrlKey(shortenUrlKey);
@@ -40,7 +36,7 @@ public class ShortenUrlRestController {
     return new ResponseEntity<>(httpHeaders, HttpStatus.MOVED_PERMANENTLY);
   }
 
-  @RequestMapping(value = "/shortenUrl/{shortenUrlKey}", method = RequestMethod.GET)
+  @GetMapping(value = "/shortenUrl/{shortenUrlKey}")
   public ResponseEntity<ShortenUrlInformationDto> getShortenUrlInformation(
       @PathVariable String shortenUrlKey) {
     ShortenUrlInformationDto shortenUrlInformationDto =
@@ -48,7 +44,7 @@ public class ShortenUrlRestController {
     return ResponseEntity.ok(shortenUrlInformationDto);
   }
 
-  @RequestMapping(value = "/shortenUrls", method = RequestMethod.GET)
+  @GetMapping(value = "/shortenUrl")
   public ResponseEntity<List<ShortenUrlInformationDto>> getAllShortenUrlInformation() {
     List<ShortenUrlInformationDto> shortenUrlInformationDtoList =
         simpleShortenUrlService.getAllShortenUrlInformationDto();
