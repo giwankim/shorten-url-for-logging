@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
   @ExceptionHandler(LackOfShortenUrlKeyException.class)
   public ResponseEntity<String> handleLackOfShortenUrlKeyException(
       LackOfShortenUrlKeyException ex) {

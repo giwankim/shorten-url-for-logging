@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import kr.co.shortenurlservice.domain.ShortenUrl;
 import kr.co.shortenurlservice.domain.ShortenUrlRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MapShortenUrlRepository implements ShortenUrlRepository {
-
-  private Map<String, ShortenUrl> shortenUrls = new ConcurrentHashMap<>();
+  private final Map<String, ShortenUrl> shortenUrls = new ConcurrentHashMap<>();
 
   @Override
   public void saveShortenUrl(ShortenUrl shortenUrl) {
@@ -20,8 +20,7 @@ public class MapShortenUrlRepository implements ShortenUrlRepository {
 
   @Override
   public ShortenUrl findShortenUrlByShortenUrlKey(String shortenUrlKey) {
-    ShortenUrl shortenUrl = shortenUrls.get(shortenUrlKey);
-    return shortenUrl;
+    return shortenUrls.get(shortenUrlKey);
   }
 
   @Override
