@@ -17,11 +17,9 @@ public class ShortenUrlRestController {
   private final SimpleShortenUrlService simpleShortenUrlService;
 
   @PostMapping(value = "/shortenUrl")
-  public ResponseEntity<ShortenUrlCreateResponseDto> createShortenUrl(
+  public ShortenUrlCreateResponseDto createShortenUrl(
       @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto) {
-    ShortenUrlCreateResponseDto shortenUrlCreateResponseDto =
-        simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
-    return ResponseEntity.ok(shortenUrlCreateResponseDto);
+    return simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
   }
 
   @GetMapping(value = "/{shortenUrlKey}")
@@ -37,18 +35,12 @@ public class ShortenUrlRestController {
   }
 
   @GetMapping(value = "/shortenUrl/{shortenUrlKey}")
-  public ResponseEntity<ShortenUrlInformationDto> getShortenUrlInformation(
-      @PathVariable String shortenUrlKey) {
-    ShortenUrlInformationDto shortenUrlInformationDto =
-        simpleShortenUrlService.getShortenUrlInformationByShortenUrlKey(shortenUrlKey);
-    return ResponseEntity.ok(shortenUrlInformationDto);
+  public ShortenUrlInformationDto getShortenUrlInformation(@PathVariable String shortenUrlKey) {
+    return simpleShortenUrlService.getShortenUrlInformationByShortenUrlKey(shortenUrlKey);
   }
 
   @GetMapping(value = "/shortenUrl")
-  public ResponseEntity<List<ShortenUrlInformationDto>> getAllShortenUrlInformation() {
-    List<ShortenUrlInformationDto> shortenUrlInformationDtoList =
-        simpleShortenUrlService.getAllShortenUrlInformationDto();
-
-    return ResponseEntity.ok(shortenUrlInformationDtoList);
+  public List<ShortenUrlInformationDto> getAllShortenUrlInformation() {
+    return simpleShortenUrlService.getAllShortenUrlInformationDto();
   }
 }
