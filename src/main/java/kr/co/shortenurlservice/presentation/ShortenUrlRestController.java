@@ -21,7 +21,6 @@ public class ShortenUrlRestController {
   @PostMapping(value = "/shortenUrl")
   public ShortenUrlCreateResponseDto createShortenUrl(
       @Valid @RequestBody ShortenUrlCreateRequestDto shortenUrlCreateRequestDto) {
-    log.trace("shortedUrlCreateRequestDto {}", shortenUrlCreateRequestDto);
     return simpleShortenUrlService.generateShortenUrl(shortenUrlCreateRequestDto);
   }
 
