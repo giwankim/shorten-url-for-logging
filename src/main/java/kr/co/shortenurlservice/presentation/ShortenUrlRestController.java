@@ -1,11 +1,9 @@
 package kr.co.shortenurlservice.presentation;
 
 import jakarta.validation.Valid;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-
 import kr.co.shortenurlservice.application.SimpleShortenUrlService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

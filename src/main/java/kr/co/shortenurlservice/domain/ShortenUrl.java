@@ -1,8 +1,7 @@
 package kr.co.shortenurlservice.domain;
 
-import lombok.ToString;
-
 import java.util.Random;
+import lombok.ToString;
 
 @ToString(of = {"originalUrl", "shortenUrlKey", "redirectCount"})
 public class ShortenUrl {
