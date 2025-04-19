@@ -1,6 +1,7 @@
 package kr.co.shortenurlservice.application;
 
 import java.util.List;
+
 import kr.co.shortenurlservice.domain.LackOfShortenUrlKeyException;
 import kr.co.shortenurlservice.domain.NotFoundShortenUrlException;
 import kr.co.shortenurlservice.domain.ShortenUrl;
@@ -32,7 +33,9 @@ public class SimpleShortenUrlService {
   public String getOriginalUrlByShortenUrlKey(String shortenUrlKey) {
     ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
 
-    if (null == shortenUrl) throw new NotFoundShortenUrlException();
+    if (null == shortenUrl) {
+      throw new NotFoundShortenUrlException("단축 URL을 찾지 못했습니다. shortenUrlKey=" + shortenUrlKey);
+    }
 
     shortenUrl.increaseRedirectCount();
     shortenUrlRepository.saveShortenUrl(shortenUrl);
@@ -43,7 +46,9 @@ public class SimpleShortenUrlService {
   public ShortenUrlInformationDto getShortenUrlInformationByShortenUrlKey(String shortenUrlKey) {
     ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
 
-    if (null == shortenUrl) throw new NotFoundShortenUrlException();
+    if (null == shortenUrl) {
+      throw new NotFoundShortenUrlException("단축 URL을 찾지 못했습니다. shortedUrlKey=" + shortenUrlKey);
+    }
 
     return new ShortenUrlInformationDto(shortenUrl);
   }
@@ -62,7 +67,9 @@ public class SimpleShortenUrlService {
       String shortenUrlKey = ShortenUrl.generateShortenUrlKey();
       ShortenUrl shortenUrl = shortenUrlRepository.findShortenUrlByShortenUrlKey(shortenUrlKey);
 
-      if (null == shortenUrl) return shortenUrlKey;
+      if (null == shortenUrl) {
+        return shortenUrlKey;
+      }
     }
 
     throw new LackOfShortenUrlKeyException();
