@@ -1,7 +1,6 @@
 package kr.co.shortenurlservice.application;
 
 import java.util.List;
-
 import kr.co.shortenurlservice.domain.LackOfShortenUrlKeyException;
 import kr.co.shortenurlservice.domain.NotFoundShortenUrlException;
 import kr.co.shortenurlservice.domain.ShortenUrl;
