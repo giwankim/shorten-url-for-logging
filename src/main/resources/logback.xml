@@ -28,7 +28,7 @@
     </appender>
 
     <!-- Logger 설정 -->
-    <root level="info">
+    <root level="trace">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
         <appender-ref ref="LOGSTASH"/>

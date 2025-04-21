@@ -1,0 +1,15 @@
+### Generate a URL
+POST http://localhost:8080/shortenUrl
+Content-Type: application/json
+
+{
+  "originalUrl": "https://www.inflearn.com"
+}
+
+### Redirect to original URL
+GET http://localhost:8080/tR8JeGUB
+Accept: application/json
+
+### GET information
+GET http://localhost:8080/shortenUrl/tR8JeGUB
+Accept: application/json
